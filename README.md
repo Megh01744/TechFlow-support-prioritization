@@ -45,3 +45,7 @@ The proposed future-state process introduces structured information capture, app
 - Tickets are routed using skills, availability, workload and P1 eligibility.
 - SLA warnings and defined escalation triggers support earlier intervention.
 - Customer updates and key ticket changes are recorded for traceability.
+
+  <p align = "center">
+<img src="diagrams/TechFlow-To-be-process flow.drawio.png" alt="Current State (As-Is) Process Flow" width="350">
+
