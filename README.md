@@ -34,7 +34,7 @@ In the current support process, customer requests enter through a generic suppor
 - Escalations and customer updates are handled inconsistently.
 
 <p align="center">
-<img src="diagrams/TechFlow_As-Is_Process_Flow.drawio.png" alt="Current State (As-Is) Process Flow" width="450">
+<img src="diagrams/TechFlow_As-Is_Process_Flow.drawio.png" alt="Current State (As-Is) Process Flow" width="350">
 
 ### Proposed Future State (To-Be)
 
