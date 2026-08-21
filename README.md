@@ -49,3 +49,18 @@ The proposed future-state process introduces structured information capture, app
 <p align = "center">
 <img src="diagrams/TechFlow-To-be-process flow.drawio.png" alt="Current State (As-Is) Process Flow" width="750">
 
+## My BA Role and Contribution
+
+I approached the project from a Business Analyst perspective, moving from problem analysis to structured requirements and delivery planning.
+
+- Analyzed the current process and modelled the proposed future state.
+- Defined stakeholder roles, scope, assumptions, dependencies and risks.
+- Documented **11 high-level, 70 functional and 12 non-functional requirements**.
+- Defined priority, routing, SLA, escalation and exception-handling rules.
+- Applied MoSCoW prioritization and proposed release groupings.
+- Translated requirements into **6 Jira Epics and 14 Stories**.
+- Prepared wireframes, **8 UAT scenarios** and requirements traceability.
+
+
+
+
