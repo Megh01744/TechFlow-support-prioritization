@@ -33,6 +33,12 @@ In the current support process, customer requests enter through a generic suppor
 - SLA risks are often identified after delays occur.
 - Escalations and customer updates are handled inconsistently.
 
+<p align="center">
+  <img src="diagrams/TechFlow_As-Is_Process_Flow.drawio.png
+    alt="TechFlow current-state support process"
+       width="750">
+</p>
+
 ### Proposed Future State (To-Be)
 
 The proposed future-state process introduces structured information capture, approved decision rules and defined operational controls. Routine decisions would be supported by the system, while uncertain or exceptional cases would remain available for human review.
