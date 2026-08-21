@@ -1,0 +1,1041 @@
+Issue Key,Issue Type,Summary,Status,Priority,Parent Key,Parent Summary,Labels,Sprint,Blocked By,Blocks,Description
+TFSP-7,Epic,Structured Ticket Intake and Classification,To Do,High,,,intake-classification,,,," Objective
+
+Provide a guided ticket intake and classification process for support tickets.
+
+ Context
+
+The goal is to make sure support tickets enter the workflow with enough business information, consistent categories, and clear review flags. This work is part of Release 1 — Core. It relates to HLR-01, HLR-02, HLR-04, and HLR-08, as well as FR-01 to FR-07 and FR-09 to FR-15.
+
+ Scope
+
+Included:
+
+* Collect structured issue, impact, workaround, and customer-account information
+* Validate required information
+* Retrieve customer organisation and subscription details
+* Assign one of the seven approved ticket categories
+* Record category changes for audit purposes
+* Provide ticket-creation confirmation to the customer
+
+Not included:
+
+* N/A
+
+ Success criteria
+
+* Tickets are created with structured issue, impact, workaround, and customer-account information
+* Required information is validated
+* Customer organisation and subscription details are retrieved
+* Incomplete submissions are flagged as *Information Required*
+* Unidentified accounts are flagged as *Account Verification Required*
+* Tickets are assigned one of the seven approved categories
+* Uncertain classifications are flagged as *Category Review Required*
+* Category changes are recorded for audit purposes
+* Customers receive ticket-creation confirmation
+
+ Risks and dependencies
+
+* Depends on retrieving customer organisation and subscription details
+* Depends on having the seven approved ticket categories available
+* Depends on clear rules for identifying incomplete submissions, unidentified accounts, and uncertain classifications
+
+ Other information
+
+* MoSCoW priority: Must Have
+* Release: Release 1 — Core"
+TFSP-8,Story,Submit structured support ticket information,To Do,High,TFSP-7,Structured Ticket Intake and Classification,structured-intake,Intake and Triage Foundation,,TFSP-9; TFSP-11; TFSP-18," Summary
+
+As a customer, I want to provide structured information about my support issue so the support team can understand and process my request correctly.
+
+ Context
+
+The issue is about a support intake chatbot that collects and validates customer issue details before creating a ticket.
+
+ Acceptance criteria
+
+* The intake chatbot captures:
+** issue description
+** affected users
+** impact on core functionality
+** workaround availability
+** business email
+* The system validates the required information and clearly identifies missing or unclear details.
+* When the business email matches an account, the system retrieves:
+** customer organization
+** subscription tier
+** plan status
+* If the account cannot be identified, the ticket displays *Account Verification Required* and receives a provisional priority based on the reported business impact until the account is verified.
+* An incomplete submission is still created as a ticket and displays *Information Required* instead of being rejected. The assigned agent can request and update the missing information.
+* After ticket creation, the customer receives:
+** the ticket ID
+** assigned or provisional priority
+** expected first-response time
+
+ Other information
+
+* Related requirements:
+** HLR-01, HLR-04
+** FR-01 to FR-07, FR-09
+* Related UAT:
+** UAT-04"
+TFSP-9,Story,Recommend and review ticket category,To Do,High,TFSP-7,Structured Ticket Intake and Classification,ticket-classification,Intake and Triage Foundation,TFSP-8,TFSP-13," Summary
+
+As a Support Agent, I want the system to recommend a ticket category and flag uncertain classifications so that tickets can be reviewed and routed consistently.
+
+ Context
+
+The feature is meant to support consistent ticket routing. It applies after complete ticket information is submitted.
+
+ Acceptance criteria
+
+# The system uses the issue description and structured intake responses to recommend one of the seven approved ticket categories after complete ticket information is submitted.
+# Uncertain or unclear classifications are flagged for manual review.
+# The ticket displays “Category Review Required” until the review is completed.
+# When an agent changes the automatically assigned category, the system records:
+#* the original category
+#* the final category
+#* the agent
+#* the date and time of the change
+# The assigned category is displayed on the ticket record and in the agent queue without requiring the agent to open the ticket.
+
+ Other information
+
+* Related high-level requirements:
+** HLR-02, HLR-04, HLR-11
+* Related functional requirements:
+** FR-10 to FR-14
+* Related UAT:
+** UAT-03"
+TFSP-10,Epic,"Priority, Routing and Assignment",To Do,High,,,,,,," Objective
+
+Assign each ticket a consistent severity and priority, then route it to an eligible Support Agent using approved business rules.
+
+ Context
+
+This epic covers core priority assignment and basic routing for support tickets.  
+It aligns with related high-level requirements HLR-03, HLR-04, HLR-05, and HLR-11, plus primary functional requirements FR-08 and FR-16 to FR-33.  
+It also follows related rules PM-01 to PM-04, BR-01 to BR-06, KD-01 to KD-05, and ER-14.
+
+ Scope
+
+Included:
+
+* Classify severity as Critical, High, Medium, or Low
+* Apply priority-override rules before the standard priority matrix
+* Assign P1, P2, or P3 using severity, customer impact, and subscription tier
+* Flag contradictory information as Priority Review Required
+* Assign a provisional higher priority until agent review
+* Record priority changes for audit purposes
+* Recalculate routing and SLA deadlines after a priority change
+* Route tickets using category skill, availability, workload, and P1 eligibility
+* Display Manual Assignment Required when no eligible P1 agent is available
+* Alert the Team Lead when manual P1 assignment is required
+
+Not included:
+
+* FR-29, which is planned for Release 2 — Enhancement
+* Experience-based routing tie-breaker, which is listed as a Should Have
+
+ Success criteria
+
+* Each ticket is assigned a consistent severity and priority
+* Priority-override rules are applied before the standard priority matrix
+* Tickets are assigned P1, P2, or P3 based on the defined inputs
+* Contradictory information is flagged as Priority Review Required
+* A provisional higher priority is assigned until agent review
+* Priority changes are recorded for audit purposes
+* Routing and SLA deadlines are recalculated after any priority change
+* Tickets are routed using category skill, availability, workload, and P1 eligibility
+* Manual Assignment Required is shown when no eligible P1 agent is available
+* The Team Lead is alerted when manual P1 assignment is required
+
+ Risks and dependencies
+
+* Correct implementation depends on the approved business rules
+* Routing depends on accurate agent category skill, availability, workload, and P1 eligibility data
+* SLA recalculation depends on priority change handling working correctly
+* Manual P1 assignment requires Team Lead alerting to function as expected
+* Release 2 work is dependent on FR-29 being handled separately
+
+ Other information
+
+* MoSCoW priority: Must Have — core priority assignment and basic routing
+* MoSCoW priority: Should Have — experience-based routing tie-breaker
+* Release: Release 1 — Core
+* FR-29 planned for Release 2 — Enhancement"
+TFSP-11,Story,Assign severity and priority using approved rules,To Do,High,TFSP-10,"Priority, Routing and Assignment",automatic-priority,Intake and Triage Foundation,TFSP-8,TFSP-13; TFSP-12; TFSP-15," Summary
+
+As a Support Agent, I want the system to assign ticket severity and priority using approved business rules so that urgent tickets are identified consistently..
+
+ Context
+
+This user story is for Support Agents. It is part of Release 1 - Core and is marked as a Must Have.
+
+ Acceptance criteria
+
+* The system classifies severity as Critical, High, Medium, or Low.
+* Severity must be based on:
+** affected users
+** core-function impact
+** workaround availability
+** issue details
+* The system checks approved priority-override rules before applying the standard priority matrix.
+* Complete organisation-wide blockage without a workaround must be assigned P1, regardless of subscription tier.
+* Organisation-wide or multi-user authentication failure must be assigned P1, regardless of subscription tier.
+* When no override applies, the system combines severity and subscription tier to assign P1, P2, or P3 using the approved priority matrix.
+* The assigned priority must be visible on the ticket and in the agent queue without opening the ticket.
+* Ticket category alone must not determine priority.
+
+ Other information
+
+* Related requirements:
+** HLR-03
+** FR-15 to FR-19
+** FR-22
+* Related rules:
+** PM-01 to PM-04
+** BR-01 to BR-06
+* Related NFR:
+** NFR-01
+* Related UAT:
+** UAT-01"
+TFSP-12,Story,Review provisional priority and record priority changes,To Do,High,TFSP-10,"Priority, Routing and Assignment",priority-review,,TFSP-11,," Summary
+
+As a Support Agent, I want conflicting ticket information and provisional priorities to be flagged so that I can review and confirm the correct priority.
+
+ Context
+
+This issue covers cases where the written issue description conflicts with the customer’s structured responses. It also covers provisional priority handling, priority changes, and related SLA and routing updates.
+
+ Acceptance criteria
+
+# When the written issue description conflicts with the customer’s structured responses, the ticket displays *Priority Review Required*.
+# When the detected impact appears higher than the selected impact, the system assigns a provisional higher priority and notifies the assigned agent.
+# A keyword alone cannot permanently determine the final ticket priority.
+# The agent can confirm or correct the provisional priority using the approved priority rules.
+# When priority changes, the system re-evaluates routing and recalculates the applicable SLA deadline from the original SLA start time.
+# A downgrade from provisional P1 requires a documented reason and Team Lead notification.
+# The system records:
+#* customer-selected impact
+#* system-assigned severity
+#* initial priority
+#* final priority
+#* applied rule
+#* reason for change
+#* person making the change
+#* date and time
+
+ Other information
+
+* Related requirements: HLR-03, HLR-04, HLR-11, FR-08, FR-20, FR-21, FR-23, FR-24
+* Related rules: KD-01 to KD-05, SLA-07
+* Related UAT: UAT-02
+* MoSCoW priority: Must Have
+* Release: Release 1 — Core"
+TFSP-13,Story,Route ticket to an eligible Support Agent,To Do,High,TFSP-10,"Priority, Routing and Assignment",agent-routing,,TFSP-9; TFSP-11,TFSP-16; TFSP-21," Summary
+
+As a Team Lead, I want tickets to be routed to suitable and available Support Agents so that assignments are consistent and P1 tickets are handled only by eligible agents.
+
+ Context
+
+This issue is for a Team Lead. Tickets should be assigned automatically after the ticket category and priority are set.  
+The routing should use agent suitability and availability rules.
+
+Related references:
+
+* HLR-05, HLR-11
+* FR-25 to FR-33
+* ER-14
+* UAT-07
+
+Priority and release:
+
+* MoSCoW priority: Must Have — basic routing
+* MoSCoW priority: Should Have — experience-based tie-breaking and assignment re-evaluation
+* Release 1 — Core
+* FR-29 and FR-32 planned for Release 2 — Enhancement
+
+ Acceptance criteria
+
+# Automatic routing starts after the ticket category and priority have been assigned.
+# The system considers:
+#* category skill
+#* current availability
+#* active workload
+#* priority-handling eligibility
+when selecting an agent.
+# Only agents available during the active support shift can receive new tickets.
+# When multiple eligible agents are available, the system prioritizes the agent with the lower active workload.
+# P1 tickets are assigned only to agents authorized to handle P1 tickets.
+# If no eligible P1 agent is available, the ticket displays *Manual Assignment Required* and the Team Lead is alerted immediately.
+# The Team Lead can manually assign or reassign the ticket when automatic routing cannot be completed.
+# The system records:
+#* assigned agent
+#* previous owner
+#* new owner
+#* assignment reason
+#* date and time of an ownership change
+# The assigned agent’s name is recorded on the ticket and visible to the Team Lead. The assigned agent receives a notification when a new ticket enters their queue.
+# The system re-evaluates the assignment when:
+#* the ticket category changes
+#* the ticket priority changes
+#* the assigned agent becomes unavailable
+#* the Team Lead requests reassignment
+
+ Other information
+
+User story:
+
+As a Team Lead, I want tickets to be assigned to suitable and available Support Agents so that tickets are handled consistently without unsafe or unnecessary assignments."
+TFSP-14,Epic,SLA Monitoring and Escalation,To Do,High,,,sla-escalation,,,," Objective
+
+Track ticket response and resolution deadlines, and apply consistent escalation rules when tickets are at risk of breaching SLA.
+
+ Context
+
+This work covers SLA monitoring for tickets. It uses approved business hours and includes tracking for first-response, workaround, and resolution targets. The issue is marked as Must Have for Release 1 — Core.
+
+ Scope
+
+Included:
+
+* Calculate SLA deadlines using approved business hours
+* Track first-response, workaround, and resolution targets
+* Display deadlines, time remaining, and current SLA status
+* Mark tickets At Risk at approved warning thresholds
+* Alert the Team Lead before an SLA breach
+* Record and escalate response and resolution breaches
+* Handle repeated customer follow-ups
+* Support senior escalation for qualifying Enterprise P1 tickets
+* Pause resolution SLA only for approved reasons
+* Preserve warning, breach, and escalation history
+
+Not included:
+
+* N/A
+
+ Success criteria
+
+* SLA deadlines are calculated using approved business hours
+* First-response, workaround, and resolution targets are tracked
+* Tickets show deadlines, time remaining, and current SLA status
+* Tickets are marked At Risk at the approved warning thresholds
+* The Team Lead is alerted before an SLA breach
+* Response and resolution breaches are recorded and escalated
+* Repeated customer follow-ups are handled
+* Senior escalation is supported for qualifying Enterprise P1 tickets
+* Resolution SLA is paused only for approved reasons
+* Warning, breach, and escalation history is preserved
+
+ Risks and dependencies
+
+* Depends on approved business hours
+* Depends on approved warning thresholds
+* Depends on approved reasons for pausing the resolution SLA
+* Depends on rules for senior escalation of qualifying Enterprise P1 tickets
+* Depends on related requirements and rules:
+** HLR-06, HLR-07, HLR-11
+** FR-34 to FR-48
+** ER-01 to ER-17
+** SLA-01 to SLA-09
+
+ Other information
+
+* Issue name: SLA Monitoring and Escalation
+* MoSCoW priority: Must Have
+* Release: Release 1 — Core"
+TFSP-15,Story,Track SLA deadlines and provide early warnings,To Do,High,TFSP-14,SLA Monitoring and Escalation,sla-monitoring,,TFSP-11,TFSP-16; TFSP-21," Summary
+
+As a Team Lead, I want SLA deadlines and early-warning indicators to be visible so that I can intervene before avoidable breaches occur.
+
+ Context
+
+This issue is related to tracking SLA deadlines for tickets. It is part of Release 1 — Core and has a MoSCoW priority of Must Have.
+
+ Acceptance criteria
+
+# The system calculates the SLA start time using approved business hours and excludes company holidays.
+# The system calculates and displays the first response and resolution deadlines according to ticket priority. It also applies the approved workaround targets: P1 - 4 business hours where possible, P2 - 8 business hours where possible, and P3 - no workaround target.
+# Active tickets display the time remaining, any warning or breach indicator, and the current SLA status: Normal, At Risk, Met, Breached, or Paused where applicable.
+# A P1 ticket without a personalised first response is marked At Risk after 10 minutes, and the Team Lead is alerted.
+# P2 and P3 tickets are marked At Risk, and the Team Lead is alerted after 3 and 6 business hours respectively when no personalised first response has been provided.
+# An unresolved ticket is marked At Risk and the Team Lead is alerted after 10 business hours for P1, 24 business hours for P2, or 40 business hours for P3. Approved resolution-SLA pause time is excluded.
+# An automated ticket acknowledgement does not count as a personalised first response.
+# Customer follow-ups do not restart or extend the SLA timer.
+
+ Other information
+
+Related requirements:
+
+* HLR-06, HLR-07
+* FR-34 to FR-37
+* FR-39
+
+Related rules:
+
+* ER-01 to ER-03
+* ER-07 to ER-09
+* SLA-01 to SLA-03
+* SLA-08, SLA-09
+
+Related UAT:
+
+* UAT-05
+
+MoSCoW priority:
+
+* Must Have
+
+Release:
+
+* Release 1 — Core"
+TFSP-16,Story,Escalate breached and exceptional tickets,To Do,High,TFSP-14,SLA Monitoring and Escalation,ticket-escalation,,TFSP-15; TFSP-13,TFSP-18; TFSP-21," Summary
+
+Escalate qualifying SLA breaches and operational exceptions to the Team Lead so serious support risks receive timely attention.
+
+User story:
+
+As a Team Lead, I want qualifying SLA breaches and operational exceptions to be escalated consistently so that serious support risks receive timely attention.
+
+ Acceptance criteria
+
+# A ticket is formally escalated to the Team Lead when its first-response SLA is breached:
+#* P1: 15 minutes
+#* P2: 4 business hours
+#* P3: 8 business hours
+# A ticket is formally escalated when its resolution SLA is breached:
+#* P1: 12 business hours
+#* P2: 30 business hours
+#* P3: 48 business hours
+# A third customer follow-up within four hours of ticket creation triggers Team Lead escalation, but does not automatically change the ticket priority.
+# If no eligible P1 agent is available, the Team Lead is alerted immediately and the ticket displays Manual Assignment Required.
+# An Enterprise P1 ticket is escalated to the Customer Support Head when the Team Lead requests senior involvement or when it remains unresolved for two hours after Team Lead escalation.
+# The Team Lead can review priority, reassign ownership, record actions, and provide an updated customer timeline.
+# Every escalation records:
+#* reason
+#* level
+#* date and time
+#* notified person
+#* current owner
+#* action taken
+#* closure details
+# An SLA breach remains recorded even if the ticket is later responded to or resolved.
+# The resolution SLA can be paused only when required customer information is pending or resolution depends on an approved external third party. A P1 SLA pause requires Team Lead approval.
+# For every SLA pause, the system records the pause reason, pause start time, resume time and person approving the pause.
+# When a ticket priority is upgraded, the system recalculates the applicable SLA deadline from the original SLA start time. The SLA timer does not restart.
+
+ Other information
+
+Related requirements:
+
+* HLR-05, HLR-06, HLR-07, HLR-11 - FR-30, FR-38, FR-40 to FR-48
+
+Rule mapping:
+
+* ER-04 to ER-06
+* ER-10 to ER-17
+
+Related UAT:
+
+* UAT-06, UAT-07
+
+MoSCoW priority:
+
+* Must Have
+
+Release:
+
+* Release 1 — Core"
+TFSP-17,Epic,Customer Communication and Notification History,To Do,High,,,customer-communication,,,," Objective
+
+Keep customers informed throughout the ticket lifecycle and maintain a traceable history of all customer notifications.
+
+ Context
+
+This Epic covers ticket-creation confirmation, escalation updates, updated timelines, resolution notifications and notification-delivery records.
+
+ Scope
+
+Included:
+
+* Send ticket-creation confirmation containing the ticket ID, assigned or provisional priority and expected first-response time
+* Send an escalation notification when the ticket receives additional management review
+* Provide an updated response or resolution timeline when applicable
+* Send resolution confirmation containing the documented resolution summary, resolution date and time, and instructions for reopening the issue or raising a new ticket if the problem continues
+* Record notification type, recipient, date and time, and delivery status
+* Provide an optional customer-satisfaction survey after resolution
+* If a notification cannot be delivered, mark it as Failed, alert the assigned agent, and allow the agent to resend it or use an approved alternative communication method
+
+ Success criteria
+
+* Customers receive confirmation after a ticket is created
+* Customers receive an update when their ticket is escalated
+* Resolution confirmation is sent only after the resolution has been documented
+* Notification history records the message type, recipient, date and time, and delivery status
+* The optional customer-satisfaction survey can be enabled as a future enhancement
+* Resolution confirmations include the documented resolution summary, resolution date and time, and appropriate next-step instructions
+* Failed notifications remain visible, the assigned agent is alerted, and resend or approved alternative communication is available
+
+ Requirements
+
+High-level requirements:
+
+HLR-08, HLR-11
+
+Functional requirements:
+
+FR-09, FR-47, FR-59 to FR-63
+
+Non-functional requirements:
+
+NFR-06 to NFR-08
+
+ Risks and dependencies
+
+* Notifications depend on a valid customer business email
+* Escalation notifications depend on an approved escalation event
+* Resolution confirmation depends on a completed resolution summary
+* Notification-service failure may delay an important customer update; failed delivery must be recorded and followed up by the assigned agent through resend or an approved alternative communication method
+* The customer-satisfaction survey is not required for Release 1
+
+ Prioritization and release
+
+MoSCoW priority:
+
+* Must Have — core customer notifications and notification history
+* Could Have — customer-satisfaction survey
+
+Release:
+
+* Release 1 — Core notifications
+* Future Backlog — customer-satisfaction survey"
+TFSP-18,Story,Send and record customer ticket notifications,To Do,High,TFSP-17,Customer Communication and Notification History,customer-ticket,,TFSP-8; TFSP-16,TFSP-19," Summary
+
+As a customer, I want to receive clear notifications throughout the ticket lifecycle so that I understand the ticket status, expected timeline and next steps.
+
+ Context
+
+This story covers the core customer notifications needed during the ticket lifecycle. It is a Must Have for Release 1 — Core. The optional customer-satisfaction survey will be handled separately as a Future Backlog story.
+
+ Acceptance criteria
+
+# After a ticket is created, the customer receives a confirmation that includes:
+#* ticket ID
+#* assigned or provisional priority
+#* expected first-response time
+#* confirmation that the support team received the request
+# The automated ticket-creation confirmation does not count as a personalised first response from a Support Agent.
+# When a ticket is escalated to the Team Lead or Customer Support Head, the customer is informed that:
+#* the issue has been escalated
+#* a senior team member is reviewing it
+#* an updated timeline will be provided
+# The escalation notification does not suggest that escalation automatically changed the ticket priority or promise an exact timeline before the responsible team member reviews the ticket.
+# When a ticket is resolved, the customer receives:
+#* the documented resolution summary
+#* resolution date and time
+#* instructions for reopening the issue or raising a new ticket if the problem continues
+# A resolution confirmation is not sent until the required resolution summary has been completed.
+# For every customer notification, the system records:
+#* notification type
+#* recipient
+#* date and time sent
+#* delivery status as Successful, Pending or Failed
+# If a notification cannot be delivered, the system:
+#* marks the notification as Failed
+#* alerts the assigned agent
+#* allows the agent to resend the message or use an approved alternative communication method
+# Any alternative communication method must follow approved communication, privacy, and data-protection policies.
+
+ Other information
+
+Related requirements:
+
+* HLR-08, HLR-11
+* FR-09, FR-59, FR-60, FR-62, FR-63
+* NFR-07, NFR-08
+
+Related UAT:
+
+* UAT-08
+
+MoSCoW priority:
+
+* Must Have
+
+Release:
+
+* Release 1 — Core"
+TFSP-19,Story,Offer a post-resolution customer-satisfaction survey,To Do,Low,TFSP-17,Customer Communication and Notification History,customer-satisfaction,,TFSP-18,," Summary
+
+As a customer, I want the option to complete a satisfaction survey after my ticket is resolved so that I can provide feedback about my support experience.
+
+ Context
+
+This optional feature adds a customer-satisfaction survey link to the resolution confirmation. It is a Could Have requirement planned for the Future Backlog and is not required for Release 1.
+
+ Acceptance criteria
+
+# When the survey feature is enabled, the resolution confirmation includes a customer-satisfaction survey link.
+# The survey link is provided only after the ticket has been resolved and the required resolution summary has been documented.
+# Completing the survey is optional and does not affect the ticket status or the customer’s ability to report that the problem continues.
+# If the survey feature is disabled or unavailable, the core resolution confirmation is still sent without the survey link.
+
+ Other information
+
+Related requirements:
+
+* HLR-08
+* FR-61
+
+Related UAT:
+
+* UAT-08 — optional survey validation
+
+MoSCoW priority:
+
+* Could Have
+
+Release:
+
+* Future Backlog"
+TFSP-20,Epic,Operational Management Dashboard,To Do,Medium,,,operational-dashboard,,,," Objective
+
+Provide authorized support-management users with a current operational view of ticket workload, SLA risk and escalations so they can identify issues requiring attention and take appropriate action.
+
+ Context
+
+This Epic covers the operational dashboard for the Team Lead and Customer Support Head. It provides management visibility but does not replace the underlying ticket, routing, SLA-monitoring or escalation functions.
+
+The dashboard is a Should Have capability planned for Release 2 — Enhancement. Advanced analytics, predictive SLA forecasting and business-intelligence reporting are outside the approved scope.
+
+ Scope
+
+Included:
+
+* Restrict dashboard access to the Team Lead and Customer Support Head by default
+* Allow Support Agent access to management-level information only when specifically authorized
+* Display open tickets by:
+** priority
+** category
+** status
+** customer tier
+* Highlight tickets approaching an SLA breach
+* Display tickets that have already breached an SLA
+* Display the time remaining before each applicable deadline
+* Order At Risk tickets by the nearest SLA deadline
+* Display currently escalated tickets, including:
+** escalation reason
+** escalation level
+** current ticket owner
+** time since escalation
+* Display the number of active tickets assigned to each Support Agent
+* Display first-response and resolution SLA-compliance percentages separately
+* Allow filtering by:
+** priority
+** category
+** status
+** customer tier
+** assigned agent
+** SLA status
+* Allow authorized users to open the relevant ticket directly from the dashboard, subject to their existing permissions
+* Reflect changes to ticket status, priority, assignment, SLA risk or escalation status within one minute
+* Require secure authentication and role-based access for management information
+
+ Success criteria
+
+* The Team Lead and Customer Support Head can review the current support queue from one operational view
+* At Risk tickets are clearly identified and ordered by the nearest SLA deadline
+* Current escalations, ownership and agent workload are visible
+* First-response and resolution SLA compliance are displayed separately
+* Authorized users can filter dashboard information and open relevant tickets for review or action
+* Applicable ticket and SLA changes appear on the dashboard within one minute
+* Management-level information is not visible to unauthorized users
+
+ Requirements
+
+High-level requirement:
+
+* HLR-09
+
+Functional requirements:
+
+* FR-49 to FR-58
+
+Non-functional requirements:
+
+* NFR-03
+* NFR-06 to NFR-08
+
+ Risks and dependencies
+
+* Dashboard information depends on accurate ticket, assignment, SLA and escalation data
+* SLA-risk visibility depends on the approved SLA calculations and warning rules
+* Workload visibility depends on current ticket-ownership information
+* The one-minute update requirement requires technical validation during design and testing
+* Dashboard access depends on correctly configured authentication and role-based permissions
+* The dashboard is an operational view and does not include predictive analytics or advanced business-intelligence reporting
+
+ Prioritization and release
+
+MoSCoW priority:
+
+* Should Have
+
+Release:
+
+* Release 2 — Enhancement"
+TFSP-21,Story,"Monitor ticket, SLA, escalation and agent workload",To Do,Medium,TFSP-20,Operational Management Dashboard,dashboard-monitoring,,TFSP-13; TFSP-15; TFSP-16,TFSP-22," Summary
+
+As a Team Lead, I want a single operational view of open tickets, SLA risks, escalations and agent workload so that I can prioritize interventions and manage the support queue effectively.
+
+ Context
+
+This story covers the monitoring and visibility part of the Operational Management Dashboard. It is planned as a Should Have capability for Release 2 — Enhancement.
+
+Dashboard filtering, direct ticket access, and detailed access restrictions are handled in a separate child story.
+
+ Acceptance criteria
+
+# The Team Lead and Customer Support Head can access the operational dashboard as authorized management users.
+# The dashboard displays open tickets by:
+#* priority
+#* category
+#* status
+#* customer tier
+# The dashboard:
+#* highlights tickets approaching an SLA breach
+#* identifies tickets that have already breached an SLA
+#* displays the time remaining before each applicable deadline
+#* orders At Risk tickets by the nearest SLA deadline
+# For currently escalated tickets, the dashboard displays:
+#* escalation reason
+#* escalation level
+#* current ticket owner
+#* time since escalation
+# The dashboard displays the number of active tickets assigned to each Support Agent.
+# The dashboard displays the current percentage of tickets meeting:
+#* first-response SLA targets
+#* resolution SLA targets
+The two compliance percentages are displayed separately.
+# Changes to ticket status, priority, assignment, SLA risk, or escalation status appear on the dashboard within one minute.
+# The dashboard provides operational monitoring only and does not include predictive SLA forecasting or advanced business-intelligence analysis.
+
+ Other information
+
+Related requirements:
+
+* HLR-09
+* FR-49 to FR-55
+* NFR-03
+
+Supporting UAT references:
+
+* UAT-05 to UAT-07 — these scenarios use dashboard visibility as supporting evidence
+
+MoSCoW priority:
+
+* Should Have
+
+Release:
+
+* Release 2 — Enhancement"
+TFSP-22,Story,Filter and securely access dashboard information,To Do,Medium,TFSP-20,Operational Management Dashboard,dashboard-access,,TFSP-21,," Summary
+
+As an authorized support-management user, I want to filter dashboard information and open relevant tickets so I can focus on specific operational risks and take appropriate action without exposing management information to unauthorized users.
+
+ Context
+
+This story covers dashboard filtering, direct ticket access, and access restrictions.  
+The dashboard’s monitoring information is covered by the related story “Monitor ticket, SLA, escalation and agent workload.”  
+This is a Should Have capability planned for Release 2 — Enhancement.
+
+ Acceptance criteria
+
+# The Team Lead and Customer Support Head can filter dashboard information by:
+#* priority
+#* category
+#* status
+#* customer tier
+#* assigned agent
+#* SLA status
+# The dashboard displays only information matching the selected filter criteria.
+# authorized users can open the relevant ticket directly from the dashboard for review or action.
+# Opening a ticket from the dashboard does not provide any permissions beyond those already assigned to the user’s role.
+# Dashboard access is restricted to the Team Lead and Customer Support Head by default.
+# Support Agents cannot view management-level SLA, compliance, or workload information unless they have been specifically authorized.
+# Users access the dashboard through company-approved secure authentication.
+# Privileged dashboard access for the Team Lead and Customer Support Head requires multi-factor authentication.
+# Users can only view or change information permitted for their assigned role.
+
+ Other information
+
+Related requirements:
+
+* HLR-09
+* FR-56 to FR-58
+* NFR-06, NFR-08
+
+Testing note:
+
+* Detailed dashboard filtering and access-control UAT will be prepared for Release 2. No execution result is claimed in the current portfolio baseline.
+
+MoSCoW priority:
+
+* Should Have
+
+Release:
+
+* Release 2 — Enhancement"
+TFSP-24,Epic,Rule Configuration and Change Control,To Do,Medium,,,rule-configuration,,,," Objective
+
+Enable authorized System Administrators to manage approved operational rules without routine code changes.  
+Ensure every configuration change is validated, approved, traceable, and recoverable.
+
+ Context
+
+This Epic covers configuration of priority rules, SLA targets, escalation thresholds, and routing criteria.
+
+It includes Release 2 enhancement work for configuration access, rule updates, validation, approval, change history, version retention, and restoration of an earlier approved version.
+
+A dedicated operational rollback workflow, including an explicit rollback record when a new configuration causes a problem, is kept in the Future Backlog.
+
+ Scope
+
+Included:
+
+* Provide a configuration area accessible only to authorized System Administrators
+* Require company-approved secure authentication and multi-factor authentication for privileged configuration access
+* Allow authorized System Administrators to update approved:
+** priority rules
+** SLA targets
+** escalation thresholds
+** routing criteria
+* Allow these updates through the system interface without requiring code changes
+* Check configuration changes for:
+** missing values
+** invalid time limits
+** conflicting rules
+* Prevent an invalid configuration from being activated
+* Show a clear explanation of what must be corrected
+* Submit configuration changes to the Customer Support Head for review
+* Notify the Customer Support Head when a change is waiting for approval
+* Allow the Customer Support Head to approve or reject a submitted change
+* Prevent a configuration change from becoming active before approval
+* Retain previous approved configuration versions for review
+* Allow an authorized user to restore an earlier approved version when required
+* Record for every configuration change:
+** rule or value changed
+** previous value
+** new value
+** person making the change
+** person approving the change
+** date and time
+** reason for the change
+* Provide a Future Backlog rollback workflow when an approved change causes an operational problem
+* Record any future rollback action in the configuration history
+
+Out of scope:
+
+* Broader product-code changes
+* Detailed technical validation logic, which will be defined during solution design and testing
+
+ Success criteria
+
+* Only authorized System Administrators can access configuration functions
+* Approved operational rules can be updated without routine code changes
+* Invalid or conflicting configurations cannot be activated
+* Users receive a clear explanation when configuration validation fails
+* No configuration change becomes active before Customer Support Head approval
+* Previous and current configuration values remain traceable
+* Earlier approved versions can be reviewed and restored by an authorized user
+* Every configuration change retains complete maker, approver, time, and reason information
+* A future rollback workflow can restore a previously approved configuration and record the rollback action
+
+ Risks and dependencies
+
+* Incorrect configuration could affect ticket priority, SLA, escalation, or routing behaviour
+* Configuration security depends on correctly implemented authentication and role-based access
+* Activation depends on timely review by the Customer Support Head
+* Version restoration and rollback depend on reliable approved-version history
+* Detailed technical validation logic depends on solution design and testing
+
+ Other information
+
+* Requirements:
+** HLR-10, HLR-11
+** FR-64 to FR-70
+** NFR-06, NFR-08, NFR-12
+* MoSCoW priority:
+** Should Have — configuration, validation, approval, and version history
+** Could Have — dedicated rollback workflow
+* Release:
+** Release 2 — Enhancement — FR-64 to FR-69
+** Future Backlog — FR-70
+* Testing note:
+** Dedicated configuration and rollback UAT scenarios will be prepared for the applicable Release 2 and Future Backlog work. No execution result is claimed in the current portfolio baseline."
+TFSP-25,Story,Configure and validate approved operational rules,To Do,Medium,TFSP-24,Rule Configuration and Change Control,configuration-validation,,,TFSP-26," Summary
+
+As a System Administrator, I want to configure and validate approved operational rules through the system interface. This helps prepare approved changes without routine code changes or invalid configurations affecting ticket handling.
+
+ Context
+
+This story covers authorized configuration access, rule editing, and validation. Approval, change history, and rollback are handled in separate stories.
+
+This is a Should Have capability planned for Release 2 — Enhancement.
+
+ Acceptance criteria
+
+# Only authorized System Administrators can access the configuration area.
+# Configuration access requires company-approved secure authentication and multi-factor authentication.
+# The System Administrator can update approved:
+#* priority rules
+#* SLA targets
+#* escalation thresholds
+#* routing criteria
+# Approved operational-rule changes can be prepared through the system interface without requiring code changes.
+# Broader product-code or technical-architecture changes cannot be performed through the configuration area.
+# Before a configuration change is saved or submitted, the system checks for:
+#* missing required values
+#* invalid time limits
+#* conflicting rules
+# If a validation error is found:
+#* the configuration cannot be activated
+#* the system identifies the error
+#* the system clearly explains what must be corrected
+# A valid configuration change can be submitted for approval but does not become active until the separate approval process is completed.
+# Users can only view or change configuration information permitted for their assigned role.
+
+ Other information
+
+Related requirements:
+
+* HLR-10
+* FR-64, FR-65, FR-67
+* NFR-06, NFR-08, NFR-12
+
+Dependency:
+
+* Activation depends on the configuration-approval Story.
+
+Testing note:
+
+* Detailed configuration-validation UAT will be prepared for Release 2. No execution result is claimed in the current portfolio baseline.
+
+MoSCoW priority:
+
+* Should Have
+
+Release:
+
+* Release 2 — Enhancement"
+TFSP-26,Story,Approve and audit configuration changes,To Do,Medium,TFSP-24,Rule Configuration and Change Control,configuration-approval-history,,TFSP-25,TFSP-27," Summary
+
+As a Customer Support Head, I want configuration changes to be reviewed, approved and recorded before activation so that only authorized changes are applied and remain traceable.
+
+ Context
+
+This story covers configuration approval, retention of approved versions, basic restoration, and change history.
+
+Configuration editing and validation are handled separately.
+
+The dedicated rollback workflow for a configuration that causes an operational problem is a separate Future Backlog Story.
+
+ Acceptance criteria
+
+# When a valid configuration change is submitted, its status is recorded as *Pending Approval*.
+# The Customer Support Head is notified that a configuration change is awaiting review.
+# The Customer Support Head can review the proposed configuration change and either approve or reject it.
+# A configuration change does not become active before it is approved by the Customer Support Head.
+# An approved change can become active, while a rejected change remains inactive.
+# For every configuration change, the system records:
+#* rule or value changed
+#* previous value
+#* new value
+#* person making the change
+#* person approving the change
+#* date and time
+#* reason for the change
+# The previous value remains preserved and is not overwritten by the new value.
+# The system retains previous approved configuration versions for authorized review.
+# An authorized user can select and restore a previous approved configuration version when required.
+# Only approved configuration versions are eligible for restoration.
+# A restoration remains visible in the configuration history.
+# Users can only review, approve, or restore configuration information permitted for their assigned role.
+
+ Other information
+
+Related requirements:
+
+* HLR-10, HLR-11
+* FR-66, FR-68, FR-69
+* NFR-06, NFR-08
+
+Dependencies:
+
+* A configuration must pass the separate validation process before it is submitted for approval.
+* The Future Backlog rollback Story depends on approved-version history.
+
+Testing note:
+
+* Detailed approval, version-history, and restoration UAT will be prepared for Release 2. No execution result is claimed in the current portfolio baseline.
+
+MoSCoW priority:
+
+* Should Have
+
+Release:
+
+* Release 2 — Enhancement"
+TFSP-27,Story,Roll back a problematic configuration,To Do,Low,TFSP-24,Rule Configuration and Change Control,configuration-rollback,,TFSP-26,," Summary
+
+As a System Administrator, I want to roll back a problematic configuration to a previously approved version so that I can restore a known working configuration without losing the change history.
+
+ Context
+
+This issue adds a dedicated rollback workflow for cases where an approved configuration change causes a problem.
+
+Release 2 already provides approved-version history and basic restoration. This enhanced rollback workflow is a Could Have capability kept in the Future Backlog.
+
+ Acceptance criteria
+
+# An authorized System Administrator can start a rollback when the active configuration causes an operational problem.
+# Only a previously approved configuration version can be selected for rollback.
+# An unapproved, rejected, or incomplete configuration cannot be activated through the rollback process.
+# The selected approved configuration is restored as the active configuration when the rollback is completed successfully.
+# The rollback does not delete the problematic configuration or any earlier configuration history.
+# For every rollback, the system records:
+#* configuration version being replaced
+#* approved version being restored
+#* person initiating the rollback
+#* date and time
+#* reason for the rollback
+#* rollback outcome
+# The rollback record remains available in the configuration history.
+# Rollback access requires company-approved secure authentication, multi-factor authentication, and the appropriate System Administrator permission.
+# If the rollback cannot be completed, the system displays a clear message explaining the failure and the next action required.
+
+ Other information
+
+Related requirements:
+
+* HLR-10, HLR-11
+* FR-70
+* NFR-06, NFR-08, NFR-12
+
+Dependencies:
+
+* Approved configuration-version history must be available.
+* The version selected for rollback must already have been approved.
+
+Testing note:
+
+* Detailed rollback UAT will be prepared when this Future Backlog capability is selected for delivery. No execution result is claimed in the current portfolio baseline.
+
+MoSCoW priority:
+
+* Could Have
+
+Release:
+
+* Future Backlog"
