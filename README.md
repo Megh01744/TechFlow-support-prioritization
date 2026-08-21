@@ -70,10 +70,10 @@ I approached the project from a Business Analyst perspective, moving from proble
 
 **Decision and exception rules**
 
-- Conflicting impact details → **Higher provisional priority + agent review**
-- Missing information → **Information Required**
-- No eligible P1 agent → **Team Lead alert + manual assignment**
-- P1 without response → **Warning at 10 minutes; escalation at 15 minutes**
+- **Conflicting impact details:** Apply a higher provisional priority and send for agent review.
+- **Missing information:** Mark the ticket as **Information Required**.
+- **No eligible P1 agent:** Alert the Team Lead for manual assignment.
+- **P1 without response:** Send a warning at 10 minutes and escalate at 15 minutes.
 
 ## Scope, Prioritization and Release Plan
 
