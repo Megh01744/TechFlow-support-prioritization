@@ -104,6 +104,19 @@ TFSP-11 shows the user story, acceptance criteria, related requirements and rule
 
 ![TFSP-11 severity and priority story](screenshots/jira/jira-story-priority-rules.png)
 
+## Confluence Documentation
+
+Confluence was used as the central workspace for the project overview, process analysis, business rules, scope, delivery planning and UAT preparation.
+
+Four low-fidelity wireframes were documented:
+
+- Customer Ticket-Intake Chatbot
+- Support Agent Queue and Ticket Details
+- Team Lead Operational Dashboard
+- System Administrator Rule Configuration
+
+[View selected Confluence documentation](docs/TechFlow_Confluence_Highlights.pdf)
+
 ## Requirements, UAT and Traceability
 
 The requirements workbook contains **11 high-level, 70 functional and 12 non-functional requirements**, supported by business rules and acceptance criteria.
