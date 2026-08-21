@@ -33,11 +33,7 @@ In the current support process, customer requests enter through a generic suppor
 - SLA risks are often identified after delays occur.
 - Escalations and customer updates are handled inconsistently.
 
-<p align="center">
-  <img src="diagrams/TechFlow_As-Is_Process_Flow.drawio.png
-    alt="TechFlow current-state support process"
-       width="750">
-</p>
+![Current State (As-Is) Process Flow](diagrams/TechFlow_As-Is_Process_Flow.drawio.png)
 
 ### Proposed Future State (To-Be)
 
