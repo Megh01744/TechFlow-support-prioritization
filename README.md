@@ -22,6 +22,7 @@ TechFlow Support Prioritization is a planning-stage Business Analyst portfolio p
 ## Business Problem
 
 TechFlow’s existing support process relies heavily on manual judgement. Tickets may enter through a generic support form or email with incomplete information and then move into a shared queue without consistently assigned categories, severity levels or priorities.
+**Assumed scenario baseline:** A 38% overall SLA-breach rate, an average P1 first-response time of approximately 75 minutes, and only around 33% of P1 tickets meeting the 15-minute response target.
 
 ### Current State (As-Is)
 
