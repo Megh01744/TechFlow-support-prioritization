@@ -104,3 +104,15 @@ TFSP-11 shows the user story, acceptance criteria, related requirements and rule
 
 ![TFSP-11 severity and priority story](screenshots/jira/jira-story-priority-rules.png)
 
+## Requirements, UAT and Traceability
+
+The requirements workbook contains **11 high-level, 70 functional and 12 non-functional requirements**, supported by business rules and acceptance criteria.
+
+Eight representative UAT scenarios were prepared and remain **Not Executed**.
+
+Traceability was maintained through:
+
+**Business need --> Requirement --> Business rule --> Jira Story --> Acceptance criteria --> UAT**
+
+**Example:** FR-17 --> BR-01 --> TFSP-11 --> UAT-01  
+Complete organization-wide blockage with no workaround must be assigned P1.
