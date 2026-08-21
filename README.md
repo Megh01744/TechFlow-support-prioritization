@@ -129,3 +129,11 @@ Traceability was maintained through:
 
 **Example:** FR-17 --> BR-01 --> TFSP-11 --> UAT-01  
 Complete organization-wide blockage with no workaround must be assigned P1.
+
+## Project Status and Limitations
+
+- Business analysis, requirements documentation and delivery planning were completed.
+- The proposed application was not developed or deployed
+- UAT scenarios were prepared but not executed
+- Baseline figures and success measures are assumptions for the portfolio scenario
+- Stakeholder validation, technical feasibility and contractual SLA review would be required before implementation
