@@ -35,6 +35,8 @@ In the current support process, customer requests enter through a generic suppor
 
 ![Current State (As-Is) Process Flow](diagrams/TechFlow_As-Is_Process_Flow.drawio.png)
 
+<img src="diagrams/TechFlow_As-Is_Process_Flow.drawio.png" alt="Current State (As-Is) Process Flow" width="450">
+
 ### Proposed Future State (To-Be)
 
 The proposed future-state process introduces structured information capture, approved decision rules and defined operational controls. Routine decisions would be supported by the system, while uncertain or exceptional cases would remain available for human review.
