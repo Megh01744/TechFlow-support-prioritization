@@ -61,6 +61,46 @@ I approached the project from a Business Analyst perspective, moving from proble
 - Translated requirements into **6 Jira Epics and 14 Stories**.
 - Prepared wireframes, **8 UAT scenarios** and requirements traceability.
 
+## Key Business and Decision Rules
 
+**Business rules**
 
+- Complete organization-wide blockage with no workaround → **P1**
+- Priority is based on business impact and subscription tier, tier alone cannot determine priority.
+
+**Decision and exception rules**
+
+- Conflicting impact details → **Higher provisional priority + agent review**
+- Missing information → **Information Required**
+- No eligible P1 agent → **Team Lead alert + manual assignment**
+- P1 without response → **Warning at 10 minutes; escalation at 15 minutes**
+
+## Scope, Prioritization and Release Plan
+
+The proposed capabilities were prioritized using MoSCoW and grouped into planned delivery stages:
+
+- **Release 1 – Core:** Structured intake, classification, priority, routing, SLA monitoring, escalation and customer notifications.
+- **Release 2 – Enhancement:** Operational dashboard, advanced routing and controlled rule configuration.
+- **Future Backlog:** Configuration rollback and customer-satisfaction survey.
+- **Out of Scope:** AI ticket resolution, predictive SLA, external integrations and mobile or multilingual support.
+
+These stages represent delivery planning only; no implementation was completed.
+
+## Jira Delivery Planning
+
+The requirements were translated into a Scrum-style Jira backlog:
+
+- **6 Epics and 14 Stories**
+- **3 Stories** planned in the *Intake and Triage Foundation* sprint
+- All work items remain **To Do**, and the sprint was not started
+
+### Backlog Overview
+
+![TechFlow Jira backlog and planned sprint](screenshots/jira/jira-backlog-overview.png.png)
+
+### Story-Level Detail
+
+TFSP-11 shows the user story, acceptance criteria, related requirements and rules, Parent Epic, Jira priority and sprint assignment.
+
+![TFSP-11 severity and priority story](screenshots/jira/jira-story-priority-rules.png)
 
