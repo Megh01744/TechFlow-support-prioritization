@@ -35,6 +35,7 @@ In the current support process, customer requests enter through a generic suppor
 
 <p align="center">
 <img src="diagrams/TechFlow_As-Is_Process_Flow.drawio.png" alt="Current State (As-Is) Process Flow" width="350">
+</p>
 
 ### Proposed Future State (To-Be)
 
@@ -47,7 +48,7 @@ The proposed future-state process introduces structured information capture, app
 - Customer updates and key ticket changes are recorded for traceability.
 
 <p align = "center">
-<img src="diagrams/TechFlow-To-be-process flow.drawio.png" alt="Current State (As-Is) Process Flow" width="800">
+<img src="diagrams/TechFlow-To-be-process flow.drawio.png" alt="Proposed Future State (To-Be) Process Flow." width="800">
 
 ## My BA Role and Contribution
 
